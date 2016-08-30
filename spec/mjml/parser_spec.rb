@@ -22,4 +22,12 @@ describe MJML::Parser do
       parser.call('').must_be_nil
     end
   end
+
+  describe 'partial' do
+    let(:partial) { read_fixture('partial.mjml') }
+
+    it 'should return raw partial' do
+      parser.call(partial).must_equal partial
+    end
+  end
 end

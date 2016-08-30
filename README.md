@@ -10,7 +10,7 @@ Allows to create email temapltes without mess.
 Add this line to your Gemfile:
 
 ```ruby
-gem 'mjml-ruby', git: 'https://github.com/kolybasov/mjml-ruby.git'
+gem 'mjml-ruby', git: 'https://github.com/kolybasov/mjml-ruby.git', require: 'mjml'
 ```
 
 Install [NodeJS](https://nodejs.org/en/) and [MJML](https://mjml.io) (both installations will works local and global).
@@ -30,6 +30,6 @@ $ bundle install
 - [x] Make it configurable
 - [x] Create Tilt interface
 - [x] Create Sprockets interface
-- [ ] Create Railtie
+- [x] Create Railtie
 - [ ] Setup Travis
 - [ ] Add usage guide

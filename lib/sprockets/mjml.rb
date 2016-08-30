@@ -1,5 +1,5 @@
 require 'sprockets'
-require 'mjml/parser'
+require 'mjml'
 
 # Sprockets
 module Sprockets
@@ -11,14 +11,15 @@ module Sprockets
   end
 
   if respond_to?(:register_transformer)
-    register_mime_type 'text/mjml', extensions: ['.mjml'], charset: :unicode
-    register_transformer 'text/mjml', 'text/html', MJML
+    register_mime_type ::MJML::MIME_TYPE, extensions: [::MJML::EXTENSION],
+                                          charset: :unicode
+    register_transformer ::MJML::MIME_TYPE, 'text/html', MJML
   end
 
   if respond_to?(:register_engine)
-    args = ['.mjml', MJML]
+    args = [::MJML::EXTENSION, MJML]
     if Sprockets::VERSION.start_with?('3')
-      args << { mime_type: 'text/mjml', silence_depreaction: true }
+      args << { mime_type: ::MJML::MIME_TYPE, silence_deprecation: true }
     end
     register_engine(*args)
   end

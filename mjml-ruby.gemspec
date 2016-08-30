@@ -5,7 +5,7 @@ require 'mjml/version'
 
 Gem::Specification.new do |s|
   s.name                 = 'mjml-ruby'
-  s.version              = Mjml::VERSION
+  s.version              = MJML::VERSION
   s.authors              = ['Mykola Basov']
   s.email                = ['kolybasov@gmail.com']
   s.homepage             = 'https://github.com/kolybasov/mjml-ruby'
@@ -22,4 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest', '~> 5.8.4'
   s.add_development_dependency 'tilt', '~> 2.0.5'
   s.add_development_dependency 'sprockets', '~> 3.0.0'
+  s.add_development_dependency 'actionpack'
+  s.add_development_dependency 'byebug'
 end

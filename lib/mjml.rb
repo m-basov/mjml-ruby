@@ -2,8 +2,11 @@ require 'dry-configurable'
 
 # MJML library for ruby
 module MJML
-  extend Dry::Configurable
+  # Constants
+  MIME_TYPE = 'text/mjml'.freeze
+  EXTENSION = '.mjml'.freeze
 
+  extend Dry::Configurable
   # Available settings
   setting :bin_path
 
@@ -25,3 +28,4 @@ MJML.setup!
 
 require 'tilt/mjml' if defined?(Tilt)
 require 'sprockets/mjml' if defined?(Sprockets)
+require 'mjml/railtie' if defined?(Rails)

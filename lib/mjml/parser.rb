@@ -5,6 +5,8 @@ module MJML
   class Parser
     class InvalidTemplate < StandardError; end
 
+    ROOT_TAGS_REGEX = %r{<mjml>.*<\/mjml>}im
+
     def initialize
     end
 
@@ -21,9 +23,17 @@ module MJML
     private
 
     def exec!(template)
+      raise InvalidTemplate if template.empty?
+      return template if partial?(template)
+
       out, err, _status = Open3.capture3("#{mjml_bin} -is <<< '#{template}'")
+
       raise InvalidTemplate unless err.empty?
       out
+    end
+
+    def partial?(template)
+      (template =~ ROOT_TAGS_REGEX).nil?
     end
 
     def mjml_bin
