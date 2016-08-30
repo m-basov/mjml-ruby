@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'dry-configurable', '~> 0.1.0'
 
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest', '~> 5.8.0', '>= 5.0.0'
   s.add_development_dependency 'tilt', '~> 2.0.0', '>= 2.0.0'
   s.add_development_dependency 'sprockets', '~> 3.0.0', '>= 3.0.0'
