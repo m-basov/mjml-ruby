@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.email                = ['kolybasov@gmail.com']
   s.homepage             = 'https://github.com/kolybasov/mjml-ruby'
   s.summary              = 'MJML parser and template engine for Ruby'
+  s.license              = 'MIT'
   s.post_install_message = 'Don\'t forget to run $ npm install -g mjml@^2.0'
 
   s.files                = `git ls-files app lib`.split("\n")
@@ -17,11 +18,11 @@ Gem::Specification.new do |s|
   s.platform             = Gem::Platform::RUBY
   s.require_paths        = ['lib']
 
-  s.add_runtime_dependency 'dry-configurable', '~> 0.1.7'
+  s.add_runtime_dependency 'dry-configurable', '~> 0.1.0'
 
-  s.add_development_dependency 'minitest', '~> 5.8.4'
-  s.add_development_dependency 'tilt', '~> 2.0.5'
-  s.add_development_dependency 'sprockets', '~> 3.0.0'
-  s.add_development_dependency 'actionpack'
-  s.add_development_dependency 'byebug'
+  s.add_development_dependency 'minitest', '~> 5.8.0', '>= 5.0.0'
+  s.add_development_dependency 'tilt', '~> 2.0.0', '>= 2.0.0'
+  s.add_development_dependency 'sprockets', '~> 3.0.0', '>= 3.0.0'
+  s.add_development_dependency 'actionpack', '>= 4.0.0'
+  s.add_development_dependency 'byebug', '~> 9.0.0', '>= 9.0.0'
 end
