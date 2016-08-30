@@ -29,7 +29,7 @@ $ bundle install
 - [x] Create parser
 - [x] Make it configurable
 - [x] Create Tilt interface
-- [ ] Create Sprockets interface
+- [x] Create Sprockets interface
 - [ ] Create Railtie
 - [ ] Setup Travis
 - [ ] Add usage guide

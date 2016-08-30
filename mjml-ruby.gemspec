@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest', '~> 5.8.4'
   s.add_development_dependency 'tilt', '~> 2.0.5'
+  s.add_development_dependency 'sprockets', '~> 3.0.0'
 end

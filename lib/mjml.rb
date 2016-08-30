@@ -21,4 +21,7 @@ module MJML
   end
 end
 
+MJML.setup!
+
 require 'tilt/mjml' if defined?(Tilt)
+require 'sprockets/mjml' if defined?(Sprockets)
