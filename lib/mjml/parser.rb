@@ -27,7 +27,7 @@ module MJML
     end
 
     def mjml_bin
-      `which mjml`.strip
+      MJML.config.bin_path
     end
   end
 end

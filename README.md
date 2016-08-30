@@ -27,6 +27,7 @@ $ bundle install
 
 ### TODO
 - [x] Create parser
+- [x] Make it configurable
 - [ ] Create Tilt interface
 - [ ] Create Sprockets interface
 - [ ] Create Railtie
