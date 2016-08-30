@@ -19,5 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'dry-configurable', '~> 0.1.7'
 
-  s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest', '~> 5.8.4'
+  s.add_development_dependency 'tilt', '~> 2.0.5'
 end

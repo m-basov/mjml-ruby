@@ -20,3 +20,5 @@ module MJML
     `which mjml`.strip
   end
 end
+
+require 'tilt/mjml' if defined?(Tilt)
