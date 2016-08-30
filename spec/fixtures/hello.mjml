@@ -1,0 +1,7 @@
+<mjml>
+  <mj-body>
+    <mj-container>
+      <mj-text>Hello, mjml-ruby!</mj-text>
+    </mj-container>
+  </mj-body>
+</mjml>
