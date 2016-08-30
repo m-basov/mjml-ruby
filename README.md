@@ -1,5 +1,7 @@
 # MJML Ruby
 
+[![Build Status](https://travis-ci.org/kolybasov/mjml-ruby.svg?branch=master)](https://travis-ci.org/kolybasov/mjml-ruby)
+
 #### [!] REQUIRE NODEJS
 
 [MJML](https://mjml.io) parser and template engine for Ruby. 
@@ -31,5 +33,5 @@ $ bundle install
 - [x] Create Tilt interface
 - [x] Create Sprockets interface
 - [x] Create Railtie
-- [ ] Setup Travis
+- [x] Setup Travis
 - [ ] Add usage guide

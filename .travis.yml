@@ -1,0 +1,17 @@
+language: ruby
+
+before_install:
+  - gem install bundler -v '>= 1.5.1'
+
+rvm:
+  - 2.3.1
+
+gemfile:
+  - Gemfile
+
+notifications:
+  email: false
+
+before_script:
+  - nvm install 5.0
+  - npm install mjml@^2.0
