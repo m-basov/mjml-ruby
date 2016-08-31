@@ -24,3 +24,6 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+# Node
+/node_modules
