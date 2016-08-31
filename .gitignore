@@ -19,6 +19,7 @@ test/tmp
 test/version_tmp
 tmp
 .byebug_history
+spec/fixtures/*.html
 
 # YARD artifacts
 .yardoc

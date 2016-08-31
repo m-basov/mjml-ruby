@@ -44,7 +44,7 @@ module MJML
     end
 
     def mjml_version
-      ver = `#{mjml_bin} -V`.strip
+      ver, _status = Open3.capture2(mjml_bin, '-V')
       (ver =~ VERSION_REGEX).nil? ? nil : ver
     end
   end
