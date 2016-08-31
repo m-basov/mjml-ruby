@@ -4,10 +4,13 @@ module MJML
   # Parser for MJML templates
   class Parser
     class InvalidTemplate < StandardError; end
+    class ExecutableNotFound < StandardError; end
 
     ROOT_TAGS_REGEX = %r{<mjml>.*<\/mjml>}im
+    VERSION_REGEX = /^\d\.\d\.\d/i
 
     def initialize
+      raise ExecutableNotFound if mjml_version.nil?
     end
 
     def call(template)
@@ -38,6 +41,11 @@ module MJML
 
     def mjml_bin
       MJML.config.bin_path
+    end
+
+    def mjml_version
+      ver = `#{mjml_bin} -V`.strip
+      (ver =~ VERSION_REGEX).nil? ? nil : ver
     end
   end
 end
