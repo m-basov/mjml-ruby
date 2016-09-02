@@ -15,7 +15,7 @@ Allows to create email templates without mess.
 Add to Gemfile:
 
 ```ruby
-gem 'mjml-ruby', '~> 0.1.0', require: 'mjml'
+gem 'mjml-ruby', '~> 0.1.1', require: 'mjml'
 ```
 
 Install [NodeJS](https://nodejs.org/en/) and [MJML](https://mjml.io) (both installations will works local and global).
