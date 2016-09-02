@@ -20,7 +20,7 @@ module MJML
   def self.find_executable
     local_path = File.expand_path('node_modules/.bin/mjml', Dir.pwd)
     return local_path if File.file?(local_path)
-    `which mjml`.strip
+    `/usr/bin/which mjml`.strip
   end
 end
 
