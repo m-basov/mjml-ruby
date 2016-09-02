@@ -8,7 +8,7 @@
 #### [!] REQUIRE NODEJS
 
 [MJML](https://mjml.io) parser and template engine for Ruby. 
-Allows to create email temapltes without mess.
+Allows to create email templates without mess.
 
 ## Install
 
