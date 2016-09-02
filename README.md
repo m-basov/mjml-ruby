@@ -72,7 +72,7 @@ end
 
 ```ruby
 require 'tilt'
-require 'ruby-mjml'
+require 'mjml'
 
 template = Tilt.new('templates/hello.mjml')
 template.render # returns compiled HTML
@@ -94,7 +94,7 @@ template.render # returns compiled HTML
 
 ```ruby
 require 'mail'
-require 'mjml-ruby'
+require 'mjml'
 
 template = File.open('hello.mjml', 'rb') { |f| MJML::Parser.new.call(f) }
 

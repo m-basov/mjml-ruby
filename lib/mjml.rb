@@ -26,6 +26,7 @@ end
 
 MJML.setup!
 
+require 'mjml/parser'
 require 'tilt/mjml' if defined?(Tilt)
 require 'sprockets/mjml' if defined?(Sprockets)
 require 'mjml/railtie' if defined?(Rails)
