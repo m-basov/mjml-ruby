@@ -115,8 +115,16 @@ end
 ## Configuration
 
 ```ruby
+# Change default mjml executable
+
+# Regular Ruby
 MJML.configure do |config|
-  config.bin_path = '/bin/mjml'
+  config.bin_path = '/usr/bin/env mjml'
+end
+
+# Rails
+Rails.application.configure do
+  config.mjml.bin_path = '/usr/bin/env mjml'
 end
 ```
 
