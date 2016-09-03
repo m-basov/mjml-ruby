@@ -5,6 +5,7 @@ module MJML
   # Constants
   MIME_TYPE = 'text/mjml'.freeze
   EXTENSION = '.mjml'.freeze
+  VERSION_REGEX = /^\d\.\d\.\d/i
 
   extend Dry::Configurable
   # Available settings
@@ -20,7 +21,12 @@ module MJML
   def self.find_executable
     local_path = File.expand_path('node_modules/.bin/mjml', Dir.pwd)
     return local_path if File.file?(local_path)
-    `/usr/bin/which mjml`.strip
+    `/usr/bin/env bash -c "which mjml"`.strip
+  end
+
+  def self.executable_version
+    ver, _status = Open3.capture2(find_executable, '-V')
+    (ver =~ VERSION_REGEX).nil? ? nil : ver
   end
 end
 

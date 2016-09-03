@@ -7,10 +7,9 @@ module MJML
     class ExecutableNotFound < StandardError; end
 
     ROOT_TAGS_REGEX = %r{<mjml>.*<\/mjml>}im
-    VERSION_REGEX = /^\d\.\d\.\d/i
 
     def initialize
-      raise ExecutableNotFound if mjml_version.nil?
+      raise ExecutableNotFound if MJML.executable_version.nil?
     end
 
     def call(template)
@@ -29,7 +28,7 @@ module MJML
       raise InvalidTemplate if template.empty?
       return template if partial?(template)
 
-      out, err, _status = Open3.capture3("#{mjml_bin} -is <<< '#{template}'")
+      out, err, _status = Open3.capture3(build_cmd(template))
 
       raise InvalidTemplate unless err.empty?
       out
@@ -43,9 +42,8 @@ module MJML
       MJML.config.bin_path
     end
 
-    def mjml_version
-      ver, _status = Open3.capture2(mjml_bin, '-V')
-      (ver =~ VERSION_REGEX).nil? ? nil : ver
+    def build_cmd(template)
+      "/usr/bin/env bash -c \"echo '#{template}' | #{mjml_bin} -is\""
     end
   end
 end

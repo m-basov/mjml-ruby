@@ -11,7 +11,6 @@ task default: :test
 
 # Prepare env for tests
 task :prepare do
-  system 'npm install -g mjml@^2.3.3'
   template_path = "#{Dir.pwd}/spec/fixtures/hello"
   system "mjml #{template_path}.mjml -o #{template_path}.html"
 end

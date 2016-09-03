@@ -15,12 +15,18 @@ Allows to create email templates without mess.
 Add to Gemfile:
 
 ```ruby
-gem 'mjml-ruby', '~> 0.1.1', require: 'mjml'
+gem 'mjml-ruby', '~> 0.1.2', require: 'mjml'
+```
+
+or
+
+```bash
+$ gem install mjml-ruby
 ```
 
 Install [NodeJS](https://nodejs.org/en/) and [MJML](https://mjml.io) (both installations will works local and global).
 
-```
+```bash
 $ npm install -g mjml@^2.3.3
 $ bundle install
 ```
@@ -122,6 +128,6 @@ end
 - [x] Create Railtie
 - [x] Setup Travis
 - [x] Add usage guide
-- [ ] Fix tests on CI
+- [x] Fix tests on CI
 - [ ] Add more tests
 - [ ] Improove docs
