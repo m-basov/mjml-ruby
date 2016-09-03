@@ -120,11 +120,15 @@ end
 # Regular Ruby
 MJML.configure do |config|
   config.bin_path = '/usr/bin/env mjml'
+  config.logger = YourLogger.new(STDOUT)
+  config.debug = true
 end
 
 # Rails
 Rails.application.configure do
   config.mjml.bin_path = '/usr/bin/env mjml'
+  config.mjml.logger = Rails.logger
+  config.mjml.debug = true
 end
 ```
 

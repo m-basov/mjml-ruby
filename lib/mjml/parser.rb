@@ -9,6 +9,8 @@ module MJML
     ROOT_TAGS_REGEX = %r{<mjml>.*<\/mjml>}im
 
     def initialize
+      MJML.logger.debug("Path: #{mjml_bin};" \
+                        "Version: #{MJML.executable_version}")
       raise ExecutableNotFound if MJML.executable_version.nil?
     end
 
@@ -25,10 +27,14 @@ module MJML
     private
 
     def exec!(template)
+      MJML.logger.debug("Template:\n #{template}")
       raise InvalidTemplate if template.empty?
+
+      MJML.logger.debug("Partial: #{partial?(template)}")
       return template if partial?(template)
 
       out, err, _status = Open3.capture3(build_cmd(template))
+      MJML.logger.debug("Output:\n #{out};\n\n Errors:\n #{err}")
 
       raise InvalidTemplate unless err.empty?
       out
