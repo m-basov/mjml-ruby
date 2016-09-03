@@ -31,6 +31,8 @@ module MJML
       ActiveSupport.on_load(:action_view) do
         ActionView::Template.register_template_handler(:mjml, Handler.new)
       end
+
+      config.mjml.logger = Rails.logger
     end
   end
 end

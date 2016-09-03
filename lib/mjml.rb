@@ -1,4 +1,6 @@
 require 'dry-configurable'
+require 'mjml/logger'
+require 'mjml/parser'
 
 # MJML library for ruby
 module MJML
@@ -17,7 +19,7 @@ module MJML
     # Init config
     configure do |config|
       config.bin_path = find_executable
-      config.logger = choose_logger
+      config.logger = Logger.setup!(STDOUT)
       config.debug = false
     end
   end
@@ -33,15 +35,6 @@ module MJML
     (ver =~ VERSION_REGEX).nil? ? nil : ver
   end
 
-  def self.choose_logger
-    if defined?(Rails)
-      Rails.logger
-    else
-      require 'mjml/logger'
-      MJML::Logger.setup!(STDOUT)
-    end
-  end
-
   def self.logger
     config.logger
   end
@@ -49,7 +42,6 @@ end
 
 MJML.setup!
 
-require 'mjml/parser'
 require 'tilt/mjml' if defined?(Tilt)
 require 'sprockets/mjml' if defined?(Sprockets)
 require 'mjml/railtie' if defined?(Rails)
