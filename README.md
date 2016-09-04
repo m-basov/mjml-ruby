@@ -127,7 +127,7 @@ end
 # Rails
 Rails.application.configure do
   config.mjml.bin_path = '/usr/bin/env mjml'
-  config.mjml.logger = Rails.logger
+  config.mjml.logger = MJML::Logger.setup!(STDOUT)
   config.mjml.debug = true
 end
 ```
