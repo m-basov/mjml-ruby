@@ -7,8 +7,12 @@ module MJML
   class Railtie < ::Rails::Railtie
     # Template handler for Rails
     class Handler
+      def initialize(base_handler = :erb)
+        @base_handler = base_handler
+      end
+
       def call(template)
-        compiled = erb_handler.call(template)
+        compiled = send("#{@base_handler}_handler").call(template)
         "::MJML::Parser.new.call(begin;#{compiled};end).html_safe"
       end
 
@@ -16,6 +20,14 @@ module MJML
 
       def erb_handler
         @erb_handler ||= ActionView::Template.registered_template_handler(:erb)
+      end
+
+      def slim_handler
+        @slim_handler ||= ActionView::Template.registered_template_handler(:slim)
+      end
+
+      def haml_handler
+        @haml_handler ||= ActionView::Template.registered_template_handler(:haml)
       end
     end
 
@@ -30,6 +42,8 @@ module MJML
 
       ActiveSupport.on_load(:action_view) do
         ActionView::Template.register_template_handler(:mjml, Handler.new)
+        ActionView::Template.register_template_handler(:mjmlslim, Handler.new(:slim))
+        ActionView::Template.register_template_handler(:mjmlhaml, Handler.new(:haml))
       end
     end
   end
