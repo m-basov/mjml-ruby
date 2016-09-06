@@ -15,7 +15,7 @@ Allows to create email templates without mess.
 Add to Gemfile:
 
 ```ruby
-gem 'mjml-ruby', '~> 0.2.2', require: 'mjml'
+gem 'mjml-ruby', '~> 0.2.3', require: 'mjml'
 ```
 
 or
