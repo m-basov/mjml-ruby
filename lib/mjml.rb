@@ -35,7 +35,7 @@ module MJML
   end
 
   def self.extract_executable_version
-    ver, _status = Open3.capture2(find_executable, '-V')
+    ver, _status = Open3.capture2(config.bin_path, '-V')
     (ver =~ VERSION_REGEX).nil? ? nil : ver
   end
 
