@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.platform             = Gem::Platform::RUBY
   s.require_paths        = ['lib']
 
-  s.add_runtime_dependency 'dry-configurable', '~> 0.1.7'
+  s.add_runtime_dependency 'dry-configurable', '~> 0.3.0'
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest', '~> 5.9.0', '>= 5.0.0'
