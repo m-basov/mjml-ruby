@@ -5,9 +5,9 @@
 [![Gemnasium](https://img.shields.io/gemnasium/kolybasov/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://gemnasium.com/github.com/kolybasov/mjml-ruby)
 [![Code Climate](https://img.shields.io/codeclimate/github/kolybasov/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://codeclimate.com/github/kolybasov/mjml-ruby)
 
-#### [!] REQUIRE NODEJS
+__[!] REQUIRE NODEJS__
 
-[MJML](https://mjml.io) parser and template engine for Ruby. 
+[MJML](https://mjml.io) parser and template engine for Ruby.
 Allows to create email templates without mess.
 
 ## Install
@@ -24,7 +24,8 @@ or
 $ gem install mjml-ruby
 ```
 
-Install [NodeJS](https://nodejs.org/en/) and [MJML](https://mjml.io) (both installations will works local and global).
+Install [NodeJS](https://nodejs.org/en/) and [MJML](https://mjml.io)
+(both installations will works local and global).
 
 ```bash
 $ npm install -g mjml@^2.3.3
@@ -33,7 +34,7 @@ $ bundle install
 
 ## Usage
 
-#### With Rails
+### With Rails
 
 ```erb
 <!-- app/views/layouts/mailer.html.mjml -->
@@ -56,8 +57,8 @@ $ bundle install
 ```ruby
 class WelcomeMailer < ApplicationMailer
   def welcome(user)
-  	@user = user
-  	mail(to: @user.email, subject: 'Welcome')
+    @user = user
+    mail(to: @user.email, subject: 'Welcome')
   end
 end
 ```
@@ -122,6 +123,7 @@ MJML.configure do |config|
   config.bin_path = '/usr/bin/env mjml'
   config.logger = YourLogger.new(STDOUT)
   config.debug = true
+  config.minify_output = true
 end
 
 # Rails
@@ -129,10 +131,12 @@ Rails.application.configure do
   config.mjml.bin_path = '/usr/bin/env mjml'
   config.mjml.logger = MJML::Logger.setup!(STDOUT)
   config.mjml.debug = true
+  config.minify_output = true
 end
 ```
 
 ## TODO
+
 - [x] Create parser
 - [x] Make it configurable
 - [x] Create Tilt interface
