@@ -14,13 +14,15 @@ module MJML
   setting :bin_path
   setting :debug
   setting :logger
+  setting :minify_output
 
   def self.setup!
     # Init config
     configure do |config|
       config.bin_path = find_executable
-      config.logger = Logger.setup!(STDOUT)
       config.debug = false
+      config.logger = Logger.setup!(STDOUT)
+      config.minify_output = false
     end
   end
 

@@ -3,11 +3,11 @@ require 'mjml/parser'
 
 describe MJML::Parser do
   let(:parser) { MJML::Parser.new }
+  let(:raw_template) { read_fixture('hello.mjml') }
+  let(:compiled_template) { read_fixture('hello.html') }
+  let(:minified_template) { read_fixture('hello.min.html') }
 
   describe 'valid template' do
-    let(:raw_template) { read_fixture('hello.mjml') }
-    let(:compiled_template) { read_fixture('hello.html') }
-
     it 'should return correct output' do
       parser.call(raw_template).must_equal compiled_template
     end
@@ -28,6 +28,18 @@ describe MJML::Parser do
 
     it 'should return raw partial' do
       parser.call(partial).must_equal partial
+    end
+  end
+
+  describe 'minified output' do
+    it 'should return not minified outup' do
+      MJML.configure { |c| c.minify_output = false }
+      parser.call(raw_template).must_equal compiled_template
+    end
+
+    it 'should return minified output' do
+      MJML.configure { |c| c.minify_output = true }
+      parser.call(raw_template).must_equal minified_template
     end
   end
 end
