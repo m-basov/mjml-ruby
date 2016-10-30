@@ -1,5 +1,6 @@
 require 'dry-configurable'
 require 'mjml/logger'
+require 'mjml/feature'
 require 'mjml/parser'
 
 # MJML library for ruby
@@ -15,14 +16,16 @@ module MJML
   setting :debug
   setting :logger
   setting :minify_output
+  setting :validation_level
 
   def self.setup!
     # Init config
     configure do |config|
       config.bin_path = find_executable
-      config.debug = false
+      config.debug = nil
       config.logger = Logger.setup!(STDOUT)
       config.minify_output = false
+      config.validation_level = :skip
     end
   end
 

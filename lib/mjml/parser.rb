@@ -34,10 +34,14 @@ module MJML
       return template if partial?(template)
 
       out, err, _sts = Open3.capture3(cmd, stdin_data: template)
-      MJML.logger.debug("Output:\n #{out};\n\n Errors:\n #{err}")
+      parsed = parse_output(out)
+
+      MJML.logger.debug("Output:\n #{parsed[:output]}")
+      MJML.logger.error(err) unless err.empty?
+      MJML.logger.warn(parsed[:warnings]) unless parsed[:warnings].empty?
 
       raise InvalidTemplate unless err.empty?
-      out
+      parsed[:output]
     end
 
     def partial?(template)
@@ -49,11 +53,30 @@ module MJML
     end
 
     def cmd
-      "#{mjml_bin} #{minify_output} -is"
+      "#{mjml_bin} #{minify_output} #{validation_level} -is"
     end
 
     def minify_output
       '--min' if MJML.config.minify_output
+    end
+
+    def validation_level
+      "--level=#{MJML.config.validation_level}" if MJML::Feature.available?(:validation_level)
+    end
+
+    def parse_output(out)
+      warnings = []
+      output = []
+
+      out.lines.each do |l| 
+        if l.strip.start_with?('Line')
+          warnings << l
+        else
+          output << l
+        end
+      end
+
+      { warnings: warnings.join, output: output.join }
     end
   end
 end

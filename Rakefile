@@ -13,10 +13,16 @@ task default: :test
 TEMPLATE_PATH = "#{Dir.pwd}/spec/fixtures"
 OUTPUT_FILES = ['hello.html', 'hello.min.html']
 
+def mjml_path
+  local_path = File.expand_path('node_modules/.bin/mjml', Dir.pwd)
+  return local_path if File.file?(local_path)
+  @executable ||= `/usr/bin/env bash -c "which mjml"`.strip
+end
+
 # Prepare env for tests
 task :prepare => [:clear] do
-  `mjml #{TEMPLATE_PATH}/hello.mjml -o #{TEMPLATE_PATH}/hello.html`
-  `mjml #{TEMPLATE_PATH}/hello.mjml -o #{TEMPLATE_PATH}/hello.min.html --min`
+  `#{mjml_path} #{TEMPLATE_PATH}/hello.mjml -o #{TEMPLATE_PATH}/hello.html`
+  `#{mjml_path} #{TEMPLATE_PATH}/hello.mjml -o #{TEMPLATE_PATH}/hello.min.html --min`
 end
 
 task :clear do

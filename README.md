@@ -15,7 +15,7 @@ Allows to create email templates without mess.
 Add to Gemfile:
 
 ```ruby
-gem 'mjml-ruby', '~> 0.2.3', require: 'mjml'
+gem 'mjml-ruby', '~> 0.3.0', require: 'mjml'
 ```
 
 or
@@ -28,11 +28,26 @@ Install [NodeJS](https://nodejs.org/en/) and [MJML](https://mjml.io)
 (both installations will works local and global).
 
 ```bash
-$ npm install -g mjml@^2.3.3
+$ npm install -g mjml@^3.0.0
 $ bundle install
 ```
 
 ## Usage
+
+### MJML v3
+
+[MJML v3](https://github.com/mjmlio/mjml/releases/tag/3.0.0) had added validation
+for templates and it breaks mjml-ruby `v0.2.x` if your template was invalid.
+mjml-ruby `> v0.3.x` has `validation_level` option(`:soft` by default) and
+allows to use old templates with v3. All validation errors will be logged.
+
+Example:
+
+```ruby
+MJML.configure do |config|
+  config.validation_level = :soft # :skip/:soft/:strict
+end
+```
 
 ### With Rails
 
@@ -122,18 +137,25 @@ end
 MJML.configure do |config|
   config.bin_path = '/usr/bin/env mjml'
   config.logger = YourLogger.new(STDOUT)
-  config.debug = true
   config.minify_output = true
+  config.validation_level = :soft
 end
 
 # Rails
 Rails.application.configure do
   config.mjml.bin_path = '/usr/bin/env mjml'
   config.mjml.logger = MJML::Logger.setup!(STDOUT)
-  config.mjml.debug = true
   config.minify_output = true
+  config.validation_level = :soft
 end
 ```
+
+## Deprecations
+
+### v0.3
+
+- `config.debug = true` is deprecated. If you are using default MJML Logger
+use `config.logger.level = ::Logger::DEBUG` instead.
 
 ## TODO
 

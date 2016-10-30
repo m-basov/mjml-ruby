@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage             = 'https://github.com/kolybasov/mjml-ruby'
   s.summary              = 'MJML parser and template engine for Ruby'
   s.license              = 'MIT'
-  s.post_install_message = 'Don\'t forget to run $ npm install -g mjml@^2.0'
+  s.post_install_message = 'Don\'t forget to run $ npm install -g mjml@^3.0'
 
   s.files                = `git ls-files app lib`.split("\n")
   s.test_files           = s.files.grep(%r{^(test|spec|features)/})

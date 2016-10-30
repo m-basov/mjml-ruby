@@ -11,7 +11,7 @@ module MJML
 
       def call(template)
         compiled = get_handler(@base_handler).call(template)
-        "::MJML::Parser.new.call(begin;#{compiled};end).html_safe"
+        "::MJML::Parser.new.call!(begin;#{compiled};end).html_safe"
       end
 
       private
