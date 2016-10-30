@@ -5,10 +5,10 @@ module MJML
   class Logger < ::Logger
     def self.setup!(destination)
       logger = new(destination)
-      logger.level = ::Logger::DEBUG
+      logger.level = ::Logger::ERROR
 
       logger.formatter = proc do |severity, datetime, _progname, msg|
-        "[#{datetime}] #{severity} -- MJML: #{msg}" if MJML.config.debug
+        "[#{datetime}] #{severity} -- MJML: #{msg}\n\n"
       end
 
       logger
