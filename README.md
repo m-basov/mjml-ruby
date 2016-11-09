@@ -145,8 +145,8 @@ end
 Rails.application.configure do
   config.mjml.bin_path = '/usr/bin/env mjml'
   config.mjml.logger = MJML::Logger.setup!(STDOUT)
-  config.minify_output = true
-  config.validation_level = :soft
+  config.mjml.minify_output = true
+  config.mjml.validation_level = :soft
 end
 ```
 
