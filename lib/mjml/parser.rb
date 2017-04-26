@@ -15,25 +15,27 @@ module MJML
     end
 
     def call(template)
-      exec!(template)
+      @template = template
+      exec!
     rescue InvalidTemplate
       nil
     end
 
     def call!(template)
-      exec!(template)
+      @template = template
+      exec!
     end
 
     private
 
-    def exec!(template)
-      MJML.logger.debug("Template:\n #{template}")
-      raise InvalidTemplate if template.empty?
+    def exec!
+      MJML.logger.debug("Template:\n #{@template}")
+      raise InvalidTemplate if @template.empty?
 
-      MJML.logger.debug("Partial: #{partial?(template)}")
-      return template if partial?(template)
+      MJML.logger.debug("Partial: #{partial?}")
+      return @template if partial?
 
-      out, err, _sts = Open3.capture3(cmd, stdin_data: template)
+      out, err = should_get_outpout_from_file? ? output_from_file : output_from_memory
       parsed = parse_output(out)
 
       MJML.logger.debug("Output:\n #{parsed[:output]}")
@@ -44,16 +46,24 @@ module MJML
       parsed[:output]
     end
 
-    def partial?(template)
-      (template =~ ROOT_TAGS_REGEX).nil?
+    def partial?
+      (@template =~ ROOT_TAGS_REGEX).nil?
     end
 
     def mjml_bin
       MJML.config.bin_path
     end
 
-    def cmd
-      "#{mjml_bin} #{minify_output} #{validation_level} -is"
+    def cmd(file_path = nil)
+      "#{mjml_bin} #{minify_output} #{validation_level} #{cmd_options}"
+    end
+
+    def cmd_options
+      if should_get_outpout_from_file?
+        "-i -o #{@temp_file.path}"
+      else
+        "-is"
+      end
     end
 
     def minify_output
@@ -64,11 +74,28 @@ module MJML
       "--level=#{MJML.config.validation_level}" if MJML::Feature.available?(:validation_level)
     end
 
+    def output_from_file
+      @temp_file = Tempfile.new("mjml-template")
+      _out, err, _sts = Open3.capture3(cmd, stdin_data: @template)
+      @temp_file.rewind
+      @temp_file.unlink
+      return @temp_file.read, err
+    end
+
+    def output_from_memory
+      out, err, _sts = Open3.capture3(cmd, stdin_data: @template)
+      return out, err
+    end
+
+    def should_get_outpout_from_file?
+      @template.size > 20_000
+    end
+
     def parse_output(out)
       warnings = []
       output = []
 
-      out.lines.each do |l| 
+      out.lines.each do |l|
         if l.strip.start_with?('Line')
           warnings << l
         else

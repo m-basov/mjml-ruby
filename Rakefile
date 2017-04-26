@@ -11,7 +11,7 @@ end
 task default: :test
 
 TEMPLATE_PATH = "#{Dir.pwd}/spec/fixtures"
-OUTPUT_FILES = ['hello.html', 'hello.min.html']
+OUTPUT_FILES = ['hello.html', 'hello-big.html', 'hello.min.html']
 
 def mjml_path
   local_path = File.expand_path('node_modules/.bin/mjml', Dir.pwd)
@@ -22,6 +22,7 @@ end
 # Prepare env for tests
 task :prepare => [:clear] do
   `#{mjml_path} #{TEMPLATE_PATH}/hello.mjml -o #{TEMPLATE_PATH}/hello.html`
+  `#{mjml_path} #{TEMPLATE_PATH}/hello-big.mjml -o #{TEMPLATE_PATH}/hello-big.html`
   `#{mjml_path} #{TEMPLATE_PATH}/hello.mjml -o #{TEMPLATE_PATH}/hello.min.html --min`
 end
 
