@@ -8,7 +8,8 @@ module MJML
   # Constants
   MIME_TYPE = 'text/mjml'.freeze
   EXTENSION = '.mjml'.freeze
-  VERSION_REGEX = /^\d\.\d\.\d/i
+  VERSION_3_REGEX = /^(\d\.\d\.\d)/i
+  VERSION_4_REGEX = /^mjml-cli: (\d\.\d\.\d)/i
 
   extend Dry::Configurable
   # Available settings
@@ -41,7 +42,26 @@ module MJML
 
   def self.extract_executable_version
     ver, _status = Open3.capture2(config.bin_path, '-V')
-    (ver =~ VERSION_REGEX).nil? ? nil : ver
+
+    # mjml 3.x outputs version directly:
+    #   3.3.5
+    # --> just take this as the version
+
+    # mjml 4.x outputs two rows:
+    #   mjml-core: 4.0.0
+    #   mjml-cli: 4.0.0
+    # --> we take the second number as the version, since we call the cli
+
+    case ver.count("\n")
+    when 1
+      # one line, mjml 3.x
+      match = ver.match(VERSION_3_REGEX)
+    when 2
+      # two lines, might be 4.x
+      match = ver.match(VERSION_4_REGEX)
+    end
+
+    match.nil? ? nil : match[1]
   end
 
   def self.logger
