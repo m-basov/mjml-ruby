@@ -2,10 +2,8 @@
 
 [![Gem](https://img.shields.io/gem/v/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://rubygems.org/gems/mjml-ruby)
 [![Travis](https://img.shields.io/travis/kolybasov/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://travis-ci.org/kolybasov/mjml-ruby)
-[![Gemnasium](https://img.shields.io/gemnasium/kolybasov/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://gemnasium.com/github.com/kolybasov/mjml-ruby)
-[![Code Climate](https://img.shields.io/codeclimate/github/kolybasov/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://codeclimate.com/github/kolybasov/mjml-ruby)
 
-__[!] REQUIRE NODEJS__
+__[!] REQUIRES NODEJS__
 
 [MJML](https://mjml.io) parser and template engine for Ruby.
 Allows to create email templates without mess.
