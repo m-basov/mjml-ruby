@@ -5,6 +5,8 @@ require 'mjml/parser'
 
 # MJML library for ruby
 module MJML
+  class BinaryNotFound < StandardError; end
+
   # Constants
   MIME_TYPE = 'text/mjml'.freeze
   EXTENSION = '.mjml'.freeze
@@ -62,6 +64,8 @@ module MJML
     end
 
     match.nil? ? nil : match[1]
+  rescue Errno::ENOENT => _e
+    raise BinaryNotFound, "mjml binary not found for path '#{config.bin_path}'"
   end
 
   def self.logger
