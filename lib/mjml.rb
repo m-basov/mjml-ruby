@@ -43,7 +43,7 @@ module MJML
   end
 
   def self.extract_executable_version
-    ver, _status = Open3.capture2(config.bin_path, '-V')
+    ver, _status = Open3.capture2(config.bin_path, '--version')
 
     # mjml 3.x outputs version directly:
     #   3.3.5
