@@ -9,8 +9,8 @@ module MJML
         @base_handler = base_handler
       end
 
-      def call(template)
-        compiled = get_handler(@base_handler).call(template)
+      def call(template, source=nil)
+        compiled = get_handler(@base_handler).call(template, source)
         "::MJML::Parser.new.call!(begin;#{compiled};end).html_safe"
       end
 
