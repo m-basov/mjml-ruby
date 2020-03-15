@@ -57,7 +57,7 @@ end
     <mj-container>
       <%= yield %>
     </mj-container>
-  <mj-body>
+  </mj-body>
 </mjml>
 ```
 
@@ -86,7 +86,7 @@ end
     <mj-container>
       <mj-text>Hello, world!</mj-text>
     </mj-container>
-  <mj-body>
+  </mj-body>
 </mjml>
 ```
 
@@ -108,7 +108,7 @@ template.render # returns compiled HTML
     <mj-container>
       <mj-text>Hello, world!</mj-text>
     </mj-container>
-  <mj-body>
+  </mj-body>
 </mjml>
 ```
 
