@@ -6,7 +6,7 @@ module MJML
     class InvalidTemplate < StandardError; end
     class ExecutableNotFound < StandardError; end
 
-    ROOT_TAGS_REGEX = %r{<mjml>.*<\/mjml>}im
+    ROOT_TAGS_REGEX = %r{<mjml.*>.*<\/mjml>}im
 
     def initialize
       MJML.logger.debug("Path: #{mjml_bin};" \
