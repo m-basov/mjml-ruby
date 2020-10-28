@@ -41,14 +41,14 @@ describe MJML::Parser do
 
   describe 'minified output' do
     it 'should return not minified outup' do
-      MJML.configure { |c| c.minify_output = false }
+      MJML::Config.minify_output = false
       parser.call(raw_template).must_equal compiled_template
     end
 
     it 'should return minified output' do
-      MJML.configure { |c| c.minify_output = true }
+      MJML::Config.minify_output = true
       parser.call(raw_template).must_equal minified_template
-      MJML.configure { |c| c.minify_output = false }
+      MJML::Config.minify_output = false
     end
   end
 end

@@ -8,13 +8,13 @@ describe 'MJML' do
     end
 
     it 'should return false for unknown feature' do
-      bin_path = MJML.config.bin_path
-      MJML.config.bin_path = '/usr/bin/env mjml-not-installed'
+      bin_path = MJML::Config.bin_path
+      MJML::Config.bin_path = '/usr/bin/env mjml-not-installed'
 
       error = -> { MJML.extract_executable_version }.must_raise MJML::BinaryNotFound
       error.message.must_match(/^mjml binary not found/)
 
-      MJML.config.bin_path = bin_path
+      MJML::Config.bin_path = bin_path
     end
   end
 end
