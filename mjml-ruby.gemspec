@@ -19,6 +19,9 @@ Gem::Specification.new do |s|
   s.require_paths        = ['lib']
 
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'railties','~> 6'
+  s.add_development_dependency 'actionmailer', '~> 6'
+  s.add_development_dependency 'tzinfo-data'
   s.add_development_dependency 'minitest', '~> 5.9', '>= 5.0'
   s.add_development_dependency 'tilt', '~> 2.0', '>= 2.0'
   s.add_development_dependency 'sprockets', '~> 3.7', '>= 3.0'
