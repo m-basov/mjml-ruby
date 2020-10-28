@@ -7,7 +7,7 @@ module MJML
   # Rails plugin for MJML ruby
   class Railtie < ::Rails::Railtie
     # Config
-    config.mjml = MJML.config
+    config.mjml = MJML::Config
 
     # Initializers
     initializer 'mjml.register_extension' do

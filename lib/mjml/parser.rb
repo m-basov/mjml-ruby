@@ -51,7 +51,7 @@ module MJML
     end
 
     def mjml_bin
-      MJML.config.bin_path
+      MJML::Config.bin_path
     end
 
     def cmd(file_path = nil)
@@ -67,11 +67,11 @@ module MJML
     end
 
     def minify_output
-      '--min' if MJML.config.minify_output
+      '--min' if MJML::Config.minify_output
     end
 
     def validation_level
-      "--level=#{MJML.config.validation_level}" if MJML::Feature.available?(:validation_level)
+      "--level=#{MJML::Config.validation_level}" if MJML::Feature.available?(:validation_level)
     end
 
     def output_from_file

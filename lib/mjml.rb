@@ -1,4 +1,3 @@
-require 'dry-configurable'
 require 'mjml/logger'
 require 'mjml/feature'
 require 'mjml/parser'
@@ -13,23 +12,26 @@ module MJML
   VERSION_3_REGEX = /^(\d\.\d\.\d)/i
   VERSION_4_REGEX = /^mjml-cli: (\d\.\d\.\d)/i
 
-  extend Dry::Configurable
   # Available settings
-  setting :bin_path
-  setting :debug
-  setting :logger
-  setting :minify_output
-  setting :validation_level
+  module Config
+    class << self
+      attr_accessor(
+        :bin_path,
+        :debug,
+        :logger,
+        :minify_output,
+        :validation_level
+      )
+    end
+  end
 
   def self.setup!
     # Init config
-    configure do |config|
-      config.bin_path = find_executable
-      config.debug = nil
-      config.logger = Logger.setup!(STDOUT)
-      config.minify_output = false
-      config.validation_level = :skip
-    end
+    Config.bin_path = find_executable
+    Config.debug = nil
+    Config.logger = Logger.setup!(STDOUT)
+    Config.minify_output = false
+    Config.validation_level = :skip
   end
 
   def self.find_executable
@@ -43,7 +45,7 @@ module MJML
   end
 
   def self.extract_executable_version
-    ver, _status = Open3.capture2(config.bin_path, '--version')
+    ver, _status = Open3.capture2(Config.bin_path, '--version')
 
     # mjml 3.x outputs version directly:
     #   3.3.5
@@ -65,11 +67,11 @@ module MJML
 
     match.nil? ? nil : match[1]
   rescue Errno::ENOENT => _e
-    raise BinaryNotFound, "mjml binary not found for path '#{config.bin_path}'"
+    raise BinaryNotFound, "mjml binary not found for path '#{Config.bin_path}'"
   end
 
   def self.logger
-    config.logger
+    Config.logger
   end
 end
 
