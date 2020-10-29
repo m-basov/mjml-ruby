@@ -11,6 +11,8 @@ module MJML
 
     # Initializers
     initializer 'mjml.register_extension' do
+      MJML.setup!
+
       unless Mime::Type.lookup ::MJML::MIME_TYPE
         Mime::Type.register ::MJML::MIME_TYPE, :mjml
       end

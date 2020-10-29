@@ -75,7 +75,8 @@ module MJML
   end
 end
 
-MJML.setup!
+# Let Rails take care of the initialization...
+MJML.setup! unless defined?(Rails)
 
 require 'tilt/mjml' if defined?(Tilt)
 require 'sprockets/mjml' if defined?(Sprockets)
