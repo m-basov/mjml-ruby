@@ -15,8 +15,7 @@ module MJML
     end
 
     def call(template)
-      @template = template
-      exec!
+      call!(template)
     rescue InvalidTemplate
       nil
     end
@@ -42,7 +41,11 @@ module MJML
       MJML.logger.error(err) unless err.empty?
       MJML.logger.warn(parsed[:warnings]) unless parsed[:warnings].empty?
 
-      raise InvalidTemplate unless err.empty?
+      unless err.empty?
+        message = [err, parsed[:warnings]].reject(&:empty?).join("\n")
+        raise InvalidTemplate.new(message)
+      end
+
       parsed[:output]
     end
 
@@ -103,7 +106,7 @@ module MJML
         end
       end
 
-      { warnings: warnings.join, output: output.join }
+      { warnings: warnings.join("\n"), output: output.join }
     end
   end
 end
