@@ -9,8 +9,6 @@ module MJML
     ROOT_TAGS_REGEX = %r{<mjml.*>.*<\/mjml>}im
 
     def initialize
-      MJML.logger.debug("Path: #{mjml_bin};" \
-                        "Version: #{MJML.executable_version}")
       raise ExecutableNotFound if MJML.executable_version.nil?
     end
 
@@ -28,16 +26,13 @@ module MJML
     private
 
     def exec!
-      MJML.logger.debug("Template:\n #{@template}")
       raise InvalidTemplate if @template.empty?
 
-      MJML.logger.debug("Partial: #{partial?}")
       return @template if partial?
 
       out, err = should_get_outpout_from_file? ? output_from_file : output_from_memory
       parsed = parse_output(out)
 
-      MJML.logger.debug("Output:\n #{parsed[:output]}")
       MJML.logger.error(err) unless err.empty?
       MJML.logger.warn(parsed[:warnings]) unless parsed[:warnings].empty?
 
