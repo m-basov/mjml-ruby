@@ -1,7 +1,7 @@
 # MJML Ruby
 
 [![Gem](https://img.shields.io/gem/v/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://rubygems.org/gems/mjml-ruby)
-[![CI](https://github.com/actions/m-basov/mjml-ruby/ci/badge.svg?branch=master)](https://github.com/m-basov/mjml-ruby/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/m-basov/mjml-ruby/workflows/CI/badge.svg?branch=master)](https://github.com/m-basov/mjml-ruby/actions?query=workflow%3ACI+branch%3Amaster)
 
 __[!] REQUIRES NODEJS__
 
