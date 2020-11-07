@@ -9,7 +9,7 @@ Rake::TestTask.new do |t|
   t.warning = true
 end
 
-task default: :test
+task default: [:prepare, :test]
 
 TEMPLATE_PATH = "#{Dir.pwd}/spec/fixtures"
 OUTPUT_FILES = ['hello.html', 'hello-big.html', 'hello.min.html']
@@ -17,7 +17,7 @@ OUTPUT_FILES = ['hello.html', 'hello-big.html', 'hello.min.html']
 def mjml_path
   local_path = File.expand_path('node_modules/.bin/mjml', Dir.pwd)
   return local_path if File.file?(local_path)
-  @executable ||= `/usr/bin/env bash -c "which mjml"`.strip
+  @executable ||= `/usr/bin/env which mjml`.strip
 end
 
 # Prepare env for tests
