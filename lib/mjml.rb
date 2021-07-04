@@ -9,8 +9,8 @@ module MJML
   # Constants
   MIME_TYPE = 'text/mjml'.freeze
   EXTENSION = '.mjml'.freeze
-  VERSION_3_REGEX = /^(\d\.\d\.\d)/i
-  VERSION_4_REGEX = /^mjml-cli: (\d\.\d\.\d)/i
+  VERSION_3_REGEX = /^(\d+\.\d+\.\d+)/i
+  VERSION_4_REGEX = /^mjml-cli: (\d+\.\d+\.\d+)/i
 
   # Available settings
   module Config
