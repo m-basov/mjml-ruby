@@ -16,5 +16,13 @@ describe 'MJML' do
 
       MJML::Config.bin_path = bin_path
     end
+
+    it 'should work with multi-digit versions' do
+      version = '3.10.235'.match(MJML::VERSION_3_REGEX)
+      _(version[1]).must_equal('3.10.235')
+
+      version = "mjml-core: 4.10.235\nmjml-cli: 4.10.235".match(MJML::VERSION_4_REGEX)
+      _(version[1]).must_equal('4.10.235')
+    end
   end
 end
