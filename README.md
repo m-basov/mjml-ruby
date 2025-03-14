@@ -1,3 +1,6 @@
+> [!WARNING]  
+> This project is no longer maintained. Please fork the repo if you find it useful.
+
 # MJML Ruby
 
 [![Gem](https://img.shields.io/gem/v/mjml-ruby.svg?maxAge=3600&style=flat-square)](https://rubygems.org/gems/mjml-ruby)
