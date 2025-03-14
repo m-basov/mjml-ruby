@@ -65,11 +65,19 @@ module MJML
     end
 
     def minify_output
-      '--min' if MJML::Config.minify_output
+      if MJML::Feature::version[:major] >= 4
+      '--config.minify true' if MJML::Config.minify_output
+      else
+        '--min' if MJML::Config.minify_output
+      end
     end
 
     def validation_level
-      "--level=#{MJML::Config.validation_level}" if MJML::Feature.available?(:validation_level)
+      if MJML::Feature::version[:major] >= 4
+        "--config.validationLevel #{MJML::Config.validation_level}"
+      else
+        "--level=#{MJML::Config.validation_level}" if MJML::Feature.available?(:validation_level)
+      end
     end
 
     def output_from_file
