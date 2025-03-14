@@ -45,7 +45,7 @@ module MJML
     end
 
     def partial?
-      (@template =~ ROOT_TAGS_REGEX).nil?
+      (@template.to_s =~ ROOT_TAGS_REGEX).nil?
     end
 
     def mjml_bin
